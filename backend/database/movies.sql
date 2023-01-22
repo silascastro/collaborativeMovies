@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `movies`.`movie` (
   `movie_image` VARCHAR(45) NULL,
   `movie_director` VARCHAR(45) NULL,
   `movie_link` VARCHAR(100) NULL,
-  `gender_gender_id` INT NOT NULL,
+  `gender_id` INT NOT NULL,
   PRIMARY KEY (`movie_id`, `gender_gender_id`),
   INDEX `fk_movie_gender1_idx` (`gender_gender_id` ASC) VISIBLE,
   CONSTRAINT `fk_movie_gender1`
