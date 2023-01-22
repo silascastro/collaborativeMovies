@@ -13,11 +13,12 @@ exports.getOneUser = async (req, res, next) => {
 
 exports.postUser = async (req, res, next) => {
   const body = req.body;
+
   await User.create(body)
-    .then((resp) => {
+    .then(() => {
       res.status(201).json({ message: 'the user has created' });
     })
-    .catch((err) => {
+    .catch(() => {
       res.status(400).json({ message: 'we have a problem to create a user' });
     });
 };
@@ -31,10 +32,10 @@ exports.updateUser = async (req, res, next) => {
       user_id: id,
     },
   })
-    .then((resp) => {
+    .then(() => {
       res.status(201).json({ message: 'the user has been updated' });
     })
-    .catch((err) => {
+    .catch(() => {
       res.status(400).json({ message: 'we have a problem to update user' });
     });
 };

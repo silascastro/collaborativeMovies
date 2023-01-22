@@ -18,10 +18,6 @@ const Review = sequelize.define(
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-    review_comentary: {
-      type: DataTypes.STRING(45),
-      allowNull: false,
-    },
   },
   {
     freezeTableName: true,

@@ -3,11 +3,9 @@ const sequelize = require('../config/database.js');
 
 const Gender = require('./gender');
 const User = require('./user');
-const Director = require('./director');
 const Actor = require('./actor');
 const Review = require('./review');
 const FavoriteMovie = require('./favorite-movie');
-const MovieHasDirector = require('./movie-has-director');
 const Character = require('./character');
 
 const Movie = sequelize.define(
@@ -31,11 +29,11 @@ const Movie = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    movie_image: {
-      type: DataTypes.STRING(45),
-      allowNull: true,
-    },
     movie_director: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    movie_image: {
       type: DataTypes.STRING(45),
       allowNull: true,
     },
@@ -89,24 +87,6 @@ User.belongsToMany(Movie, {
     model: FavoriteMovie,
   },
   foreignKey: 'favorite_user_id',
-  constraint: true,
-});
-
-//directors
-
-Movie.belongsToMany(Director, {
-  through: {
-    model: MovieHasDirector,
-  },
-  foreignKey: 'movie_movie_id',
-  constraint: true,
-});
-
-Director.belongsToMany(Movie, {
-  through: {
-    model: MovieHasDirector,
-  },
-  foreignKey: 'director_director_id',
   constraint: true,
 });
 
