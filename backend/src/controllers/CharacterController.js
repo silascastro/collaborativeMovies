@@ -14,12 +14,28 @@ exports.getAllCharactersFromMovies = async (req, res, next) => {
 exports.getAllMoviesFromActor = async (req, res, next) => {
   const { actor_id } = req.params;
 
-  const movies = await Character.findAll({
+  const character = await Character.findAll({
     where: {
       character_actor_id: actor_id,
     },
   });
+  return res.json(character);
+};
 
-  movies;
-  return res.json(characters);
+exports.deleteCharacter = async (req, res, next) => {
+  const { id } = req.params;
+
+  await Gender.destroy({
+    where: {
+      character_id: id,
+    },
+  })
+    .then(() => {
+      res.status(201).json({ message: 'the character has been removed' });
+    })
+    .catch(() => {
+      res
+        .status(400)
+        .json({ message: 'we have a problem to remove the character' });
+    });
 };
