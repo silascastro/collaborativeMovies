@@ -47,3 +47,9 @@ li a:hover {
   right: 1rem;
   font-size: 1rem;
 }
+
+.add-movie-btn {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}

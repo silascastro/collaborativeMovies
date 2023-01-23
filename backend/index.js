@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const database = require('./src/config/database');
-database.sync({ force: false });
+database.sync({ force: true });
 const uploadImage = require('./src/config/upload-image');
 
 const app = express();
@@ -24,9 +24,7 @@ app.use('/reviews', review);
 
 //image upload
 app.post('/upload-image', uploadImage.single('image'), async (req, res) => {
-  console.log(req.file);
-
-  res.json({ message: 'teste' });
+  res.json({ data: req.file });
 });
 
 app.use('/upload', express.static('public/images'));
