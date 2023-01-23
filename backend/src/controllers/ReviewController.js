@@ -1,6 +1,4 @@
 const Review = require('../models/review');
-const User = require('../models/user');
-const Movie = require('../models/movie');
 
 exports.getAllReviewsFromMovie = async (req, res, next) => {
   const { movie_id } = req.params;

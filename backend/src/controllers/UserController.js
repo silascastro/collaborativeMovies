@@ -1,7 +1,11 @@
 const User = require('../models/user');
+const Movie = require('../models/movie');
 
 exports.getAllUsers = async (req, res, next) => {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    order: [['user_id', 'ASC']],
+    include: [Movie],
+  });
   return res.json(users);
 };
 

@@ -21,6 +21,7 @@ const Review = sequelize.define(
   },
   {
     freezeTableName: true,
+    timestamps: false,
   }
 );
 
