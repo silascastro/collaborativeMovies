@@ -1,0 +1,37 @@
+<main>
+  <ng-template #noMovies>
+    <div *ngIf="!loading" class="no-movies">Nenhum filme cadastrado!</div>
+  </ng-template>
+
+  <app-loading *ngIf="loading" class="loading"></app-loading>
+
+  <section
+    *ngIf="movies.value.length > 0; else noMovies"
+    class="movies-container"
+  >
+    <div
+      *ngFor="let movie of movies.value"
+      class="movie-card"
+      [routerLink]="['description', movie.movie_id]"
+    >
+      <img [src]="uploadUrl + '/' + movie.movie_image" alt="" />
+
+      <span class="info">
+        <span>{{ movie.movie_name }}</span>
+
+        <img src="../../../assets/next.svg" width="20px" alt="" />
+      </span>
+    </div>
+  </section>
+
+  <button
+    class="add-movie-btn"
+    mat-mini-fab
+    color="primary"
+    matTooltip="Primary"
+    aria-label="Example icon button with a menu icon"
+    (click)="openCreateMovieModal()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</main>

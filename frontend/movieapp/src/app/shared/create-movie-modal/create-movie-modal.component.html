@@ -1,0 +1,72 @@
+<main class="modal-container">
+  <h2 mat-dialog-title>{{ movieData ? "Editar Filme" : "Cadastrar Filme" }}</h2>
+  <form class="form-section" [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input
+        formControlName="movieName"
+        matInput
+        placeholder="Ex: Vingadores"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enredo</mat-label>
+      <textarea
+        matInput
+        formControlName="movieDescription"
+        placeholder="Descrição sobre o filme"
+        rows="5"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Genero</mat-label>
+      <input formControlName="movieGender" matInput placeholder="Ex: Ação" />
+    </mat-form-field>
+
+    <div class="file-uplaod">
+      <button
+        mat-button
+        color="primary"
+        type="button"
+        (click)="fileInput.click()"
+      >
+        Imagem do filme
+      </button>
+      <mat-hint *ngIf="!fileUploaded"
+        >Selecione uma imagem para o filme</mat-hint
+      >
+      <input
+        hidden
+        #fileInput
+        (change)="setNewImage($event)"
+        type="file"
+        id="file"
+      />
+
+      <mat-hint *ngIf="fileUploaded">
+        {{ file.value.name }}
+        <button mat-button (click)="clearFile()">delete</button>
+      </mat-hint>
+    </div>
+    <mat-error *ngIf="file.getError('fileIncorrect')"
+      >formato de arquivo inválido</mat-error
+    >
+  </form>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="close()">
+      Cancelar
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      style="margin-left: 20px"
+      (click)="handlerCadastrar()"
+      [disabled]="this.form.invalid"
+    >
+      Cadastrar
+    </button>
+  </div>
+</main>
