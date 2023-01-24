@@ -1,9 +1,11 @@
-import { api } from './common';
+import { API } from './common';
 
 export const MOVIESAPP = {
-  MOVIES: `${api}/movies`,
+  MOVIES: `${API}/movies`,
+  MOVIE: (id) => `${API}/movies/${id}`,
+  REVIEWS: `${API}/reviews`,
 };
 
 export const UPLOAD = {
-  IMAGES: `${api}/upload-image`,
+  IMAGES: `${API}/upload-image`,
 };

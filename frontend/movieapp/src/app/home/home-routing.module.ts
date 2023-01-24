@@ -10,7 +10,15 @@ const routes: Routes = [
     children: [
       {
         path: 'movies',
-        component: MoviesComponent,
+        loadChildren: () =>
+          import('./movies/movies.module').then(
+            (module) => module.MoviesModule
+          ),
+      },
+      {
+        path: '',
+        redirectTo: '/movies',
+        pathMatch: 'full',
       },
     ],
   },

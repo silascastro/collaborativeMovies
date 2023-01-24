@@ -14,7 +14,15 @@ export class MoviesService {
     return this.http.get<Movie[]>(MOVIESAPP.MOVIES);
   }
 
+  public getOneMovie(id: any): Observable<Movie> {
+    return this.http.get<Movie>(MOVIESAPP.MOVIE(id));
+  }
+
   public createMovie(data): Observable<any> {
     return this.http.post(MOVIESAPP.MOVIES, data);
+  }
+
+  public updateMovie(id, data): Observable<any> {
+    return this.http.patch(MOVIESAPP.MOVIE(id), data);
   }
 }

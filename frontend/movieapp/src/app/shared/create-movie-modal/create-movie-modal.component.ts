@@ -1,9 +1,9 @@
+import { Movie } from 'src/app/core/models/movie';
 import { MoviesService } from './../../core/services/movies.service';
 import { UploadImageService } from './../../core/services/upload-image.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-movie-modal',
@@ -15,20 +15,28 @@ export class CreateMovieModalComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateMovieModalComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder,
-    private uploadImageService: UploadImageService,
-    private moviesService: MoviesService
+    private uploadImageService: UploadImageService
   ) {}
 
   public fileUploaded = false;
+  public movieData: Movie;
 
   public form = this.fb.group({
     movieName: ['', Validators.required],
     movieDescription: ['', Validators.required],
+    movieGender: ['', Validators.required],
     file: ['', Validators.required],
   });
 
   ngOnInit(): void {
-    console.log(this.data);
+    const data = this.data;
+    this.movieData = data?.movie;
+    if (this.data) {
+      this.movieName.setValue(this.movieData.movie_name);
+      this.movieDescription.setValue(this.movieData.movie_description);
+      this.movieGender.setValue(this.movieData.movie_gender);
+      this.file.setValidators(null);
+    }
   }
   public close(data?: any): void {
     this.dialogRef.close(data);
@@ -39,17 +47,33 @@ export class CreateMovieModalComponent implements OnInit {
     this.validationInputFile(file);
   }
 
+  public handlerCadastrar(): void {
+    if (this.movieData && !this.file.value) {
+      const data = {
+        movie_name: this.movieName.value,
+        movie_gender: this.movieGender.value,
+        movie_description: this.movieDescription.value,
+      };
+
+      this.close(data);
+    } else {
+      this.uploadImage();
+    }
+  }
+
   public uploadImage(): void {
-    const data = this.file.value;
-    this.uploadImageService.postImage(data).subscribe(
+    const image = this.file.value;
+    this.uploadImageService.postImage(image).subscribe(
       (response: any) => {
         const { filename } = response.data;
-        const movie = {
-          movie_name: this.form.get('movieName').value,
-          movie_description: this.form.get('movieDescription').value,
+        const data = {
+          movie_name: this.movieName.value,
+          movie_gender: this.movieGender.value,
+          movie_description: this.movieDescription.value,
           movie_image: filename,
         };
-        this.close(movie);
+
+        this.close(data);
         this.fileUploaded = true;
       },
       ({ error }) => {
@@ -82,6 +106,18 @@ export class CreateMovieModalComponent implements OnInit {
   public clearFile(): void {
     this.fileUploaded = false;
     this.file.setValue(null);
+  }
+
+  public get movieName(): any {
+    return this.form.get('movieName');
+  }
+
+  public get movieDescription(): any {
+    return this.form.get('movieDescription');
+  }
+
+  public get movieGender(): any {
+    return this.form.get('movieGender');
   }
 
   public get file(): any {

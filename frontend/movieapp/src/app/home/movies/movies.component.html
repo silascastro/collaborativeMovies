@@ -1,20 +1,34 @@
-<main class="movies-container">
-  <mat-progress-bar mode="query"></mat-progress-bar>
-  <!-- <div *ngFor="let item of movies.value">
-    <div class="movie-card" (click)="teste()">
-      <img src="../../../assets/avatar.jpeg" alt="" />
+<main>
+  <ng-template #noMovies>
+    <div *ngIf="!loading" class="no-movies">Nenhum filme cadastrado!</div>
+  </ng-template>
+
+  <app-loading *ngIf="loading" class="loading"></app-loading>
+
+  <section
+    *ngIf="movies.value.length > 0; else noMovies"
+    class="movies-container"
+  >
+    <div
+      *ngFor="let movie of movies.value"
+      class="movie-card"
+      [routerLink]="['description', movie.movie_id]"
+    >
+      <img [src]="uploadUrl + '/' + movie.movie_image" alt="" />
+
       <span class="info">
-        <span>Matrix</span>
+        <span>{{ movie.movie_name }}</span>
 
         <img src="../../../assets/next.svg" width="20px" alt="" />
       </span>
     </div>
-  </div> -->
+  </section>
 
   <button
     class="add-movie-btn"
     mat-mini-fab
     color="primary"
+    matTooltip="Primary"
     aria-label="Example icon button with a menu icon"
     (click)="openCreateMovieModal()"
   >

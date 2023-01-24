@@ -1,5 +1,5 @@
 <main class="modal-container">
-  <h2 mat-dialog-title>Cadastrar Filme</h2>
+  <h2 mat-dialog-title>{{ movieData ? "Editar Filme" : "Cadastrar Filme" }}</h2>
   <form class="form-section" [formGroup]="form">
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
@@ -11,13 +11,18 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Descrição</mat-label>
+      <mat-label>Enredo</mat-label>
       <textarea
         matInput
         formControlName="movieDescription"
         placeholder="Descrição sobre o filme"
         rows="5"
       ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Genero</mat-label>
+      <input formControlName="movieGender" matInput placeholder="Ex: Ação" />
     </mat-form-field>
 
     <div class="file-uplaod">
@@ -51,12 +56,14 @@
   </form>
 
   <div class="actions">
-    <button mat-raised-button color="primary">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="close()">
+      Cancelar
+    </button>
     <button
       mat-raised-button
       color="accent"
       style="margin-left: 20px"
-      (click)="uploadImage()"
+      (click)="handlerCadastrar()"
       [disabled]="this.form.invalid"
     >
       Cadastrar

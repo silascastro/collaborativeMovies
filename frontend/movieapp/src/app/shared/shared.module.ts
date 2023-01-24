@@ -10,7 +10,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { CreateMovieModalComponent } from './create-movie-modal/create-movie-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +28,7 @@ import { LoadingComponent } from './loading/loading.component';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatProgressBarModule,
+    MatProgressSpinnerModule,
 
     ReactiveFormsModule,
   ],
@@ -40,9 +43,13 @@ import { LoadingComponent } from './loading/loading.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatSnackBarModule,
 
     ReactiveFormsModule,
+    LoadingComponent,
   ],
 })
 export class SharedModule {}
