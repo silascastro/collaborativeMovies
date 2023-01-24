@@ -94,7 +94,19 @@ export class MovieDescriptionComponent implements OnInit {
     );
   }
 
-  public teste(event) {
+  public deleteMovie(): void {
+    this.movieService.deleteMovie(this.id).subscribe(
+      () => {
+        this.fbService.showFeedbackSnack('Filme Removido com sucesso!');
+        this.routerNavigate.navigate(['movies']);
+      },
+      () => {
+        this.fbService.showFeedbackSnack('erro ao Remover Filme!');
+      }
+    );
+  }
+
+  public updateData(event) {
     this.getMovie();
   }
 }

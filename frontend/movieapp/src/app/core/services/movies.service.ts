@@ -25,4 +25,8 @@ export class MoviesService {
   public updateMovie(id, data): Observable<any> {
     return this.http.patch(MOVIESAPP.MOVIE(id), data);
   }
+
+  public deleteMovie(id): Observable<any> {
+    return this.http.delete(MOVIESAPP.MOVIE(id));
+  }
 }
