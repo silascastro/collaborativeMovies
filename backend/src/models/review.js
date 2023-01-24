@@ -11,11 +11,15 @@ const Review = sequelize.define(
       primaryKey: true,
     },
     review_note: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(45),
       allowNull: false,
     },
     review_comentary: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(250),
+      allowNull: false,
+    },
+    review_rate: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },

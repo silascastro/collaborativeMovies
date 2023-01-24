@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const database = require('./src/config/database');
-database.sync({ force: true });
+database.sync({ force: false });
 const uploadImage = require('./src/config/upload-image');
 
 const app = express();
@@ -12,14 +12,12 @@ app.use(cors());
 const port = process.env.port || 3000;
 
 //routes
-const user = require('./src/routes/user');
+
 const movie = require('./src/routes/movie');
-const gender = require('./src/routes/gender');
 const review = require('./src/routes/review');
 
-app.use('/users', user);
+// app.use('/users', user);
 app.use('/movies', movie);
-app.use('/genders', gender);
 app.use('/reviews', review);
 
 //image upload

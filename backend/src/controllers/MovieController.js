@@ -1,35 +1,26 @@
 const Movie = require('../models/movie');
-const Gender = require('../models/gender');
-const User = require('../models/user');
+const Review = require('../models/review');
 
 exports.getAllMovies = async (req, res, next) => {
   const movies = await Movie.findAll({
     include: [
       {
-        model: Gender,
-      },
-      {
-        model: User,
-        attributes: ['user_id'],
+        model: Review,
       },
     ],
   });
   return res.json(movies);
 };
 
-exports.getAllMoviesByGender = async (req, res, next) => {
-  const { gender_id } = req.params;
-  const movies = await Movie.findAll({
-    where: {
-      gender_id,
-    },
-  });
-  return res.json(movies);
-};
-
 exports.getOneMovie = async (req, res, next) => {
   const { id } = req.params;
-  const movie = await Movie.findByPk(id);
+  const movie = await Movie.findByPk(id, {
+    include: [
+      {
+        model: Review,
+      },
+    ],
+  });
   return res.json(movie);
 };
 

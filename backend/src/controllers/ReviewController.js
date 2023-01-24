@@ -1,25 +1,5 @@
 const Review = require('../models/review');
 
-exports.getAllReviewsFromMovie = async (req, res, next) => {
-  const { movie_id } = req.params;
-
-  const reviews = await Review.findAll({
-    where: { review_movie_id: movie_id },
-  });
-  return res.json(reviews);
-};
-
-exports.getAllReviewsFromUser = async (req, res, next) => {
-  const { user_id } = req.params;
-
-  const reviews = await Review.findAll({
-    where: {
-      review_user_id: user_id,
-    },
-  });
-  return res.json(reviews);
-};
-
 exports.postReview = async (req, res, next) => {
   const body = req.body;
   console.log(body);

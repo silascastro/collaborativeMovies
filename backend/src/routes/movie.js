@@ -5,10 +5,9 @@ const uploadImage = require('../config/upload-image');
 const router = express.Router();
 
 router.get('/', movieController.getAllMovies);
-router.get('/gender/:gender_id', movieController.getAllMoviesByGender);
 router.get('/:id', movieController.getOneMovie);
 router.post('/', uploadImage.single('image'), movieController.postMovie);
-router.put('/:id', movieController.updateMovie);
+router.patch('/:id', movieController.updateMovie);
 router.delete('/:id', movieController.deleteMovie);
 
 module.exports = router;
