@@ -48,7 +48,7 @@
           >
             Editar
           </button>
-          <button mat-raised-button>Remover</button>
+          <button mat-raised-button (click)="deleteMovie()">Remover</button>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@
 
     <app-new-review
       class="my-review"
-      (newReviewEvent)="teste($event)"
+      (newReviewEvent)="updateData($event)"
       [movieId]="id"
     ></app-new-review>
   </section>
