@@ -1,10 +1,15 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('movies', 'be22ec052f4541', 'f9ea654e', {
-  host: 'localhost',
+const sequelize = new Sequelize(
+  'heroku_a7d2a55b2795ea1',
+  'be22ec052f4541',
+  'f9ea654e',
+  {
+    host: 'us-cdbr-east-06.cleardb.net',
 
-  dialect: 'mysql',
-});
+    dialect: 'mysql',
+  }
+);
 
 sequelize
   .authenticate()

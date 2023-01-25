@@ -14,13 +14,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema movies
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `movies` DEFAULT CHARACTER SET utf8mb3 ;
-USE `movies` ;
+CREATE SCHEMA IF NOT EXISTS `heroku_a7d2a55b2795ea1` DEFAULT CHARACTER SET utf8mb3 ;
+USE `heroku_a7d2a55b2795ea1` ;
 
 -- -----------------------------------------------------
 -- Table `movies`.`movie`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `movies`.`movie` (
+CREATE TABLE IF NOT EXISTS `heroku_a7d2a55b2795ea1`.`movie` (
   `movie_id` INT NOT NULL AUTO_INCREMENT,
   `movie_name` VARCHAR(100) NOT NULL,
   `movie_description` VARCHAR(300) NOT NULL,
@@ -40,17 +40,17 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `movies`.`review`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `movies`.`review` (
+CREATE TABLE IF NOT EXISTS `heroku_a7d2a55b2795ea1`.`review` (
   `review_id` INT NOT NULL AUTO_INCREMENT,
   `review_note` VARCHAR(45) NOT NULL,
   `review_comentary` VARCHAR(250) NOT NULL,
   `review_rate` INT NOT NULL,
   `fk_movie_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`review_id`),
-  INDEX `fk_movie_id` (`fk_movie_id` ASC) VISIBLE,
+  INDEX `fk_movie_id` (`fk_movie_id` ASC),
   CONSTRAINT `review_ibfk_1`
     FOREIGN KEY (`fk_movie_id`)
-    REFERENCES `movies`.`movie` (`movie_id`)
+    REFERENCES `heroku_a7d2a55b2795ea1`.`movie` (`movie_id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB
