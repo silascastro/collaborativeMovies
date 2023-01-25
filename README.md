@@ -6,4 +6,5 @@
 - [X] Angular CLI V10.x
 
 
-### como rodar a aplcia
+### como rodar a aplicação?
+  
