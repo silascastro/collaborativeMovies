@@ -11,6 +11,7 @@ export class MoviesService {
   constructor(private http: HttpClient) {}
 
   public getAllMovies(): Observable<Movie[]> {
+    console.log(MOVIESAPP.MOVIES);
     return this.http.get<Movie[]>(MOVIESAPP.MOVIES);
   }
 

@@ -1,2 +1,2 @@
-export const API = 'http://localhost:3000';
-export const UPLOADS = 'http://localhost:3000/upload';
+export const API = 'https://back-moviesapp.herokuapp.com';
+export const UPLOADS = `${API}/upload`;
