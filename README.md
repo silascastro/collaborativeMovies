@@ -6,5 +6,17 @@
 - [X] Angular CLI V10.x
 
 
-### como rodar a aplicação?
+### Estrutura do projeto
+ ```
+ _backend
+   └── public
+   └── database
+   └── src
+   └── index.js
+ frontend
+  └──movieapp
+   └── e2e
+   └── src
+
   
+```
